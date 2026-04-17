@@ -4,11 +4,11 @@ import './index.css'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Mainlayout from './Layout/Mainlayout';
-import Homepage from './pages/homepage/homepage';
 import Timeline from './pages/timeline/timeline';
 import Errorpage from './pages/Errorpage/Errorpage';
 import Navbar from './components/Navbar/Navbar';
 import Stats from './pages/Stats/Stats';
+import Homepage from './components/Homepage/Homepage';
 
 
 const router = createBrowserRouter([
