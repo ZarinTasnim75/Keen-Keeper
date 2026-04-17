@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Friends = ({ friend }) => {
     const statusStyles = {
@@ -6,12 +6,9 @@ const Friends = ({ friend }) => {
         "almost due": "bg-yellow-400 rounded-full text-white font-semibold",
         "on-track": "bg-green-800 rounded-full text-white font-semibold"
     };
-    const navigate = useNavigate();
     return (
-        <div
-            onClick={() => navigate(`/friend/${friend.id}`)}
-            className="card bg-base-100 shadow-md cursor-pointer hover:shadow-lg transition"
-        >
+        <Link to={`/friendDetails/${friend.id}`}
+            className="card bg-base-100 shadow-md cursor-pointer hover:shadow-lg transition" >
             <div className="card-body items-center text-center">
 
                 <div className="avatar">
@@ -39,7 +36,7 @@ const Friends = ({ friend }) => {
                 </span>
 
             </div>
-        </div>
+        </Link>
     );
 };
 

@@ -9,6 +9,7 @@ import Errorpage from './pages/Errorpage/Errorpage';
 import Navbar from './components/Navbar/Navbar';
 import Stats from './pages/Stats/Stats';
 import Homepage from './components/Homepage/Homepage';
+import FriendDetails from './pages/FriendDetails/FriendDetails';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
       {
         path: "/stats",
         element: <Stats></Stats>
+      },
+      {
+        path: "/friendDetails/:id",
+        element: <FriendDetails></FriendDetails>,
+        loader: () => fetch ("/public/friendsData.json")
       }
     ],
     errorElement: <div>

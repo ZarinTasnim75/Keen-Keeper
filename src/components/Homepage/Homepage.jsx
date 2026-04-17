@@ -10,8 +10,7 @@ const Homepage = () => {
                     <div className="max-w-md">
                         <h1 className="text-3xl font-bold mt-10">Friends to keep close in your life</h1>
                         <p className="py-6">
-                            Your personal shelf of meaningful connections. Browse, tend, and nurture the
-                            relationships that matter most.
+                            Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
                         </p>
                         <button className="btn bg-green-800 text-white mb-10">+ Add a Friend</button>
                     </div>
@@ -20,8 +19,6 @@ const Homepage = () => {
             </div>
             <Stats></Stats>
            <Friend></Friend>
-            
-
         </div>
     );
 };
