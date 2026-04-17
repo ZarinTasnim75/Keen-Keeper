@@ -26,9 +26,9 @@ const FriendDetails = () => {
         });
 
         if (type === action.CALL) {
-            toast.success(`Called with ${name}`);
+            toast.success(`Call with ${name}`);
         } else if (type === action.TEXT) {
-            toast.info(`Texted ${name}`);
+            toast.info(`Text with ${name}`);
         } else if (type === action.VIDEO) {
             toast.success(`Video call with ${name}`);
         }
