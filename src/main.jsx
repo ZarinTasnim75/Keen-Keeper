@@ -4,12 +4,14 @@ import './index.css'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Mainlayout from './Layout/Mainlayout';
-import Timeline from './pages/timeline/timeline';
+import Timeline from './pages/Timeline/Timeline';
 import Errorpage from './pages/Errorpage/Errorpage';
 import Navbar from './components/Navbar/Navbar';
 import Stats from './pages/Stats/Stats';
 import Homepage from './components/Homepage/Homepage';
 import FriendDetails from './pages/FriendDetails/FriendDetails';
+import FriendTimeline from './components/Context/FriendContext';
+import { ToastContainer } from 'react-toastify';
 
 
 const router = createBrowserRouter([
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/friendDetails/:id",
         element: <FriendDetails></FriendDetails>,
-        loader: () => fetch ("/public/friendsData.json")
+        loader: () => fetch("/public/friendsData.json")
       }
     ],
     errorElement: <div>
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <FriendTimeline>
+      <RouterProvider router={router} />
+      <ToastContainer></ToastContainer>
+    </FriendTimeline>
+
   </StrictMode>,
 )

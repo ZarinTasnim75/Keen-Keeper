@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { BellOff, Archive, Trash2, Phone, MessageSquare, Video } from "lucide-react";
+import { FriendContext } from '../../components/Context/FriendContext';
+import { toast } from "react-toastify";
 
 const FriendDetails = () => {
+    const action = {
+        CALL: "call",
+        TEXT: "text",
+        VIDEO: "video",
+    };
     const { id } = useParams()
     const friends = useLoaderData();
     const expectedFriends = friends.find(friend => friend.id == id);
     const { name, picture, email, days_since_contact, status, tags, bio, goal, next_due_date } = expectedFriends;
+
+    const { addTimeline } = useContext(FriendContext);
+
+    const handleAction = (type) => {
+        addTimeline({
+            id: Date.now(),
+            name,
+            type,
+            date: new Date().toLocaleString()
+        });
+
+        if (type === action.CALL) {
+            toast.success(`Called with ${name}`);
+        } else if (type === action.TEXT) {
+            toast.info(`Texted ${name}`);
+        } else if (type === action.VIDEO) {
+            toast.success(`Video call with ${name}`);
+        }
+    };
+
+
     return (
         <div className="min-h-screen bg-gray-50 p-8 text-gray-700">
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -70,15 +98,18 @@ const FriendDetails = () => {
                     <div className="card bg-white shadow-sm border border-gray-100 p-6">
                         <h3 className="text-lg font-semibold text-gray-600 mb-6">Quick Check-In</h3>
                         <div className="grid grid-cols-3 gap-4">
-                            <button className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
+                            <button onClick={() => handleAction(action.CALL)}
+                                className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
                                 <Phone size={24} className="text-gray-700" />
                                 <span className="text-sm font-medium">Call</span>
                             </button>
-                            <button className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
+                            <button onClick={() => handleAction(action.TEXT)}
+                                className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
                                 <MessageSquare size={24} className="text-gray-700" />
                                 <span className="text-sm font-medium">Text</span>
                             </button>
-                            <button className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
+                            <button onClick={() => handleAction(action.VIDEO)}
+                                className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-gray-100 transition gap-2">
                                 <Video size={24} className="text-gray-700" />
                                 <span className="text-sm font-medium">Video</span>
                             </button>
